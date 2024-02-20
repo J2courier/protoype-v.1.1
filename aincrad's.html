@@ -1,126 +1,315 @@
-<!doctype html>
-<html>
-  
-  <style>
+#include <stdio.h>
+#include <conio.h>
+#define g gotoxy
+#define p printf
+#define s scanf
+int  current_bal =10000;
+int choice, withdraw, deposit, ctr = 1;
+char pass, entered_password[50], ans;
 
-      body {
-      background: #202020;
-      color: white;
-      } 
-      #div1 {
-        background-color:rgb(85, 83, 83);
-        width: 33.33%;
-        float: right;
-      }
-      #div2 {
-        background-color:rgb(85, 83, 83);
-        width: 33.33%;
-        float: left;
-      }
-        #div3 {
-          background-color:rgb(85, 83, 83);
-        width: 33.33%;
-        margin: 0 auto; 
+void balance_menu(){
+    clrscr();
+    g(2, 1);p("|==============================================|");
+    g(2, 2);p("|                                              |");
+    g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+    g(2, 4);p("|                                              |");
+    g(2, 5);p("|                                              |");
+    g(2, 6);p("|                                              |");
+    g(2, 7);p("|                                              |");
+    g(2, 8);p("|==============================================|");
+    g(2, 9);p("|                                              |");
+    g(2, 10);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+    g(21, 2);p("ABC BANK");
+    g(4, 4);p("Current Balance: %d", current_bal);
+    g(4, 9);p("PLEASE PRESS [ENTER] BACK TO MAIN MENU ");
+    getch();
+}
+
+int main() {
+    password:
+    while (ctr < 4){
+        clrscr();
+        g(2, 2);p("Enter your password: ");
+        loop:
+        g(23, 2);s("%s", entered_password);
+        pass = strcmp (entered_password, "memeshe");
+        if (pass == 0){
+            ask:
+            clrscr();
+            g(2, 1);p("|==============================================|");
+            g(2, 2);p("|                                              |");
+            g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+            g(2, 4);p("|                                              |");
+            g(2, 5);p("|                                              |");
+            g(2, 6);p("|                                              |");
+            g(2, 7);p("|                                              |");
+            g(2, 8);p("|                                              |");
+            g(2, 9);p("|                                              |");
+            g(2, 10);p("|                                              |");
+            g(2, 11);p("|==============================================|");
+            g(2, 12);p("|                                              |");
+            g(2, 13);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+            g(17, 2);p("Welcome to Bank ABC");
+            g(17, 4);p("Main Menu");
+            g(4, 6);p("[1] Balance");
+            g(4, 7);p("[2] Withdraw");
+            g(4, 8);p("[3] Deposit");
+            g(4, 9);p("[4] Exit");
+            g(4, 10);p("Enter Choice: ");
+            choice:
+            g(18, 10);s("%d", &choice);
+                if (choice == 1){
+                     balance_menu();
+                     getch();
+                     goto ask;
+                     break;
+                }        
+                if (choice == 2){
+                    clrscr();
+                    g(2, 1);p("|==============================================|");
+                    g(2, 2);p("|                                              |");
+                    g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                    g(2, 4);p("|                                              |");
+                    g(2, 5);p("|                                              |");
+                    g(2, 6);p("|                                              |");
+                    g(2, 7);p("|                                              |");
+                    g(2, 8);p("|                                              |");
+                    g(2, 9);p("|                                              |");
+                    g(2, 10);p("|                                              |");
+                    g(2, 11);p("|==============================================|");
+                    g(2, 12);p("|                                              |");
+                    g(2, 13);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                    g(20, 2);p("ABC BANK");
+                    g(4, 4);p("CURRENT BALANCE: %d", current_bal);
+                    g(4, 5);p("ENTER WITHDRAW AMOUNT: ");
+                    amount:
+                    g(27, 5);s("%d", &withdraw);
+                        if (withdraw % 100 == 0){
+                            g(4, 6);p("CONFIRM AMOUNT? Y/N: ");
+                            g(4, 6);s("%c", ans);
+                            if (ans == 'Y' || ans == 'y'){
+                                if (current_bal > 500 && withdraw != current_bal && withdraw > 99){
+                                current_bal = current_bal - withdraw;
+                                    if (current_bal > 500){
+                                        //amount_again:
+                                        g(2, 13);p("|                                              |");
+                                        clrscr();
+                                        g(2, 1);p("|==============================================|");
+                                        g(2, 2);p("|                                              |");
+                                        g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                                        g(2, 4);p("|                                              |");
+                                        g(2, 5);p("|                                              |");
+                                        g(2, 6);p("|                                              |");
+                                        g(2, 7);p("|                                              |");
+                                        g(2, 8);p("|                                              |");
+                                        g(2, 9);p("|                                              |");
+                                        g(2, 10);p("|                                              |");
+                                        g(2, 11);p("|==============================================|");
+                                        g(2, 12);p("|                                              |");
+                                        g(2, 13);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                                        g(19, 2);p("ABC BANK");
+                                        g(4, 4);p("WITHDRAW SUCCESS!");
+                                        g(4, 5);p("WITHDRAW AMOUNT: %d", withdraw);
+                                        g(4, 6);p("REMAINING BALANCE: %d", current_bal);
+                                        g(4, 12);p("PLEASE PRESS [B] TO BACK TO MAIN MENU: ");
+                                        scan:
+                                        g(43, 12);s("%s", &ans);
+                                        if (ans == 'B' || ans == 'b'){
+                                            goto ask;
+                                        }
+                                        else {
+                                           g(2, 1);p("|==============================================|");
+                                           g(2, 2);p("|                                              |");
+                                           g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                                           g(2, 4);p("|                                              |");
+                                           g(2, 5);p("|                                              |");
+                                           g(2, 6);p("|                                              |");
+                                           g(2, 7);p("|                                              |");
+                                           g(2, 8);p("|                                              |");
+                                           g(2, 9);p("|                                              |");
+                                           g(2, 10);p("|                                              |");
+                                           g(2, 11);p("|==============================================|");
+                                           g(2, 12);p("|                                              |");
+                                           g(2, 13);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                                           g(2, 7);p("INVALID INPUT");
+                                           g(2, 6);p("              ");
+                                           goto scan;
+                                        }
+                                }
+                                else {
+                                   g(2, 1);p("|==============================================|");
+                                   g(2, 2);p("|                                              |");
+                                   g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                                   g(2, 4);p("|                                              |");
+                                   g(2, 5);p("|                                              |");
+                                   g(2, 6);p("|                                              |");
+                                   g(2, 7);p("|                                              |");
+                                   g(2, 8);p("|                                              |");
+                                   g(2, 9);p("|                                              |");
+                                   g(2, 10);p("|                                              |");
+                                   g(2, 11);p("|==============================================|");
+                                   g(2, 12);p("|                                              |");
+                                   g(2, 13);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                                   g(19, 2);p("ABC BANK");
+                                   g(8, 5);p("CAN'T WITHDRAW THE REMAINING AMOUNT");
+                                   g(8, 6);p("THERE MUST BE AT LEAST 500 LEFT. ");
+                                   g(25, 4);p("              ");
+                                   current_bal = current_bal + withdraw;
+                                   g(4, 12);p("PLEASE PRESS [B] TO BACK TO MAIN MENU: ");
+                                   scan_again:
+                                   g(43, 12);s("%s", &ans);
+                                      if (ans == 'B' || ans == 'b'){
+                                          goto ask;
+                                      } else {
+                                          goto scan_again;
+                                   }
+                                }
+                                
+                            }
+                        else if (withdraw == current_bal){
+                            g(4, 12);p("INVALID AMOUNT");
+                            g(27, 4);p("                 ");
+                            goto amount;
+                        }
+                        else {
+                            g(4, 12);p("NO AMOUNT HAS BEEN ENTERED");
+                            g(27, 4);p("                 ");
+                            goto amount;
+                            }
+                    } 
+                else if (ans == 'N' || ans == 'n'){
+                            g(27, 5);p("               ");
+                            goto amount;
+                            }
+                        }
+                        else {
+                             g(4, 12);p("INVALID AMOUNT");
+                            g(27, 5);p("                 ");
+                            goto amount;
+                            }
+                              
+                            
+                        
+                if (choice == 3){
+                    clrscr();
+                    g(2, 1);p("|==============================================|");
+                    g(2, 2);p("|                                              |");
+                    g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                    g(2, 4);p("|                                              |");
+                    g(2, 5);p("|                                              |");
+                    g(2, 6);p("|                                              |");
+                    g(2, 7);p("|                                              |");
+                    g(2, 8);p("|                                              |");
+                    g(2, 9);p("|                                              |");
+                    g(2, 10);p("|                                              |");
+                    g(2, 11);p("|==============================================|");
+                    g(2, 12);p("|                                              |");
+                    g(2, 13);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                    g(19, 2);p("ABC BANK");
+                    g(4, 4);p("DEPOSIT AMOUNT: ");
+                    deposit_amount:
+                    g(21, 4);s("%d", &deposit);
+                        if (deposit % 100 == 0){
+                            if (deposit > 99 && deposit < 20001){
+                                clrscr();
+                                g(2, 1);p("|==============================================|");
+                                g(2, 2);p("|                                              |");
+                                g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                                g(2, 4);p("|                                              |");
+                                g(2, 5);p("|                                              |");
+                                g(2, 6);p("|                                              |");
+                                g(2, 7);p("|                                              |");
+                                g(2, 8);p("|                                              |");
+                                g(2, 9);p("|                                              |");
+                                g(2, 10);p("|                                              |");
+                                g(2, 11);p("|==============================================|");
+                                g(2, 12);p("|                                              |");
+                                g(2, 13);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                                current_bal = deposit + current_bal;
+                                g(19, 2);p("ABC BANK");
+                                g(4, 4);p("DEPOSIT SUCCESS!!");
+                                g(4, 5);p("CURRENT BALANCE: %d", current_bal);
+                                dep_scan:
+                                g(4, 12);p("PLEASE PRESS [B] TO BACK TO [MAIN MENU]: ");
+                                g(44, 12);s("%s", &ans);
+                                if (ans == 'B' || ans == 'b'){
+                                    goto ask;
+                                }
+                                else {
+                                    g(46, 7);p("              ");
+                                    goto dep_scan;
+                                }
+                            }
+                            else {
+                                g(4, 12);p("INVALID AMOUNT");
+                                g(21, 4);p("                    ");
+                                goto deposit_amount;
+                            }
+                        }
+                        else {
+                            g(4, 5);p("INVALID AMOUNT");
+                            g(21, 4);p("                 ");
+                            goto deposit_amount;
+                        }
+                }
+                if (choice == 4){
+                    g(2, 1);p("|==============================================|");
+                    g(2, 2);p("|                                              |");
+                    g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                    g(2, 4);p("|                                              |");
+                    g(2, 5);p("|                                              |");
+                    g(2, 6);p("|                                              |");
+                    g(2, 7);p("|                                              |");
+                    g(2, 8);p("|                                              |");
+                    g(2, 9);p("|                                              |");
+                    g(2, 10);p("|                                              |");
+                    g(2, 11);p("|                                              |");
+                    g(2, 12);p("|                                              |");
+                    g(2, 13);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                    g(21, 2);p("CONFIRMATION");
+                    g(8, 6);p("ARE YOU SURE YOU WANT TO EXIT? Y/N: ");
+                    g(45, 6);s("%s", &ans);
+                     if (ans == 'Y' || ans == 'y'){
+                         clrscr();
+                         g(23, 2);p("             ");
+                         goto password;
+                     }
+                     else if (ans == 'N' || ans == 'n') {
+                         goto ask;
+                     }
+                     
+                }
+                else {
+                    g(4, 12);p("INVALID INPUT");
+                    g(18, 10);p("        ");
+                    goto choice;
+                }
+                    }
+                        
+                
+                
         }
-  </style>  
-  
-<body> 
-  <title>AINCRAD</title> 
-    <h1>My List</h1>
-     
-  <body>
-    <div id="div1">Anime List</div>
-    <div id="div2">Song List</div>
-    <div id="div3">Manga List</div>
-  </body>
-  
-    <div id="div2"><p>Would you like to listen to the song that I<br> often listen to?:</p>
-      <button><a href=https://youtu.be/hN5MBlGv2Ac>Official髭男dism - Subtitle</a></button><br>
-      <button><a href="https://youtu.be/kZOc7BDx1Ro">Sora the troll - Goodbye</a></button><br>
-      <button><a href="https://youtu.be/PEnJbjBuxnw">AJR - World's Smallest Violin</a></button><br>
-      <button><a href="https://youtu.be/RLLEB4Ac3Hg">5 Seconds of Summer -Heartbreak Girl</a></button><br>
-      <button><a href="https://youtu.be/Srf9Kvb0Gms">Deko - Midnight tokyo</a></button><br>
-      <button><a href="https://youtu.be/VPSoNx1gyQ4">88 Rising - Midsummer madness ft. Joji</a></button><br>
-      <button><a href="https://youtu.be/2FCo7OxVoeY">Joji - Ticktock</a></button><br>
-      <button><a href="https://youtu.be/Pw-0pbY9JeU">Twenty one Pilots - Ride</a></button><br>
-      <button><a href="https://youtu.be/BJxudKhtd9c">Elyotto - Sugarcrash</a></button><br> 
-      <button><a href="https://youtu.be/au2n7VVGv_c">Post Malone - Psycho</a></button><br>
-      <button><a href="https://youtu.be/au2n7VVGv_c">Niki - Lowkey</a></button><br>
-      <button><a href="https://youtu.be/RkID8_gnTxw">K/DA -  Baddest ft. (G)I-DLE</a></button><br>
-      <button><a href="https://youtu.be/N_Eyi-zWQZo">4s4ki - Log out</a></button><br>
-      <button><a href="https://youtu.be/g_mgqYb-GYw">Yameii - Baby My Phone</a></button><br>
-      <button><a href="https://youtu.be/DSvUwInfO_I">Heiakim ft. Miraie - Idk</a></button><br>
-      <button><a href="https://youtu.be/O1bhZgkC4Gw">Official髭男dism -  Cry Baby</a></button><br>
-      <button><a href="https://youtu.be/TQ8WlA2GXbk">Official髭男dism - Pretender</a></button><br>
-      <button><a href="https://youtu.be/-kgOFJG881I">Official髭男dism - Shukumei</a></button><br>
-      <button><a href="https://youtu.be/bt8wNQJaKAk">Official髭男dism - I Love</a></button><br>
-      <button><a href="https://youtu.be/DuMqFknYHBs">Official髭男dism - イエスタデイ</a></button><br>
-      <button><a href="https://youtu.be/6lnS-8FVod4">Official髭男dism - Universe</a></button><br>
-      <p>what can you say about my the music I like?</p>
-      <input placeholder="use chat if this does not work"><button text="submit"><a href="https://web.facebook.com/jherson.bartolay">Chat</a></button><br>
-      <input placeholder="comment not yet available"><button type="submit">Post</button>
-    </div>  
-
-    <div id="div1"><p>These are my favorite Anime:</p><br>
-      <button><a href="https://animixplay.to/v1/detective-conan">Case Closed</a></button><br>
-      <button><a href="https://animixplay.to/v1/blue-lock">BLue Lock</a></button><br>
-      <button><a href="https://animixplay.to/v1/spy-x-family">Spy x Family</a></button><br>
-      <button><a href="https://animixplay.to/v1/Hunter-x-hunter">Hunter x Hunter</a></button><br>
-      <button><a href="https://animixplay.to/v1/jujutsu-kaisen-tv">Jujutsu Kaisen</a></button><br>
-      <button><a href="https://animixplay.to/v1/chainsaw-man">Chainsaw Man</a></button><br>
-      <button><a href="https://animixplay.to/v1/haikyuu">Haikyuu!</a></button><br>
-      <button><a href="https://animixplay.to/v1/one-piece">One Piece</a></button><br>
-      <button><a href="https://animixplay.to/anime/34572/Black_Clover">Black Clover</a></button><br>
-      <button><a href="https://animixplay.to/v1/86">86 Eighty-Six</a></button><br>
-      <button><a href="https://animixplay.to/v1/dungeon-ni-deai-o-motomeru-no-wa-machigatte-iru-darouka">Danmachi</a></button><br>
-      <button><a href="https://animixplay.to/v1/god-eater">God Eater</a></button><br>
-      <button><a href="https://animixplay.to/v1/grave-of-the-fireflies">Graves of the Fireflies</a></button><br>
-      <button><a href="https://animixplay.to/v1/kimi-no-suizou-wo-tabetai">I Want to Eat Your Pancreas</a></button><br>
-      <button><a href="https://animixplay.to/v1/kimi-no-suizou-wo-tabetai">Classroom of Elite</a></button><br>
-      <button><a href="https://animixplay.to/v1/tales-of-zestiria-the-x">Tales of Zesteria X</a></button><br>
-      <button><a href="https://animixplay.to/v1/hyouka">Hyouka</a></button><br>
-      <button><a href="https://animixplay.to/v1/oregairu">Oregairu</a></button><br>
-      <button><a href="https://animixplay.to/v1/katekyo-hitman-reborn">Katekyo no Hitman Reborn</a></button><br>
-      <button><a href="https://animixplay.to/v1/nanbaka">Nanbaka</a></button><br>
-      <button><a href="https://animixplay.to/v1/fukumenkei-noise">Anonymous Noise</a></button><br>
-     <br>
-     <p>Can you share me yours?</p>
-     <input placeholder="use chat if this does not work"><button text="submit"><a href="https://web.facebook.com/jherson.bartolay">Chat</a></button><br>
-     <input placeholder="comment not yet available"><button type="submit">Post</button>
-    </div>
-    
-    <div id="div1"><p>These are my favorite manga's:</p><br>
-      <button><a href="https://rawkuma.com/manga/the-king-of-fantasy/">King of Fantasy</a></button><br>
-      <button><a href="https://rawkuma.com/manga/wind-breaker-nii-satoru/">Wind Breaker (Nii Saturo)</a></button><br>
-      <button><a href="https://mangabuddy.com/heart-gear">Heart Gear</a></button><br>
-      <button><a href="https://mangabuddy.com/mbx16-jujutsu-kaisen">Jujutsu Kaisen</a></button><br>
-      <button><a href="https://mangabuddy.com/mbx16-eleceed">Eleceed</a></button><br>
-      <button><a href="https://mangabuddy.com/sakamoto-days">Sakamoto Days</a></button><br>
-      <button><a href="https://mangabuddy.com/dandadan">Dandadan</a></button><br>
-      <button><a href="https://mangabuddy.com/kaiju-no-8">Kaiju No.8</a></button><br>
-      <button><a href="https://mangabuddy.com/mashle">Mashle Magic and Muscle</a></button><br>
-      <button><a href="https://mangabuddy.com/detective-conan">Case Closed</a></button><br>
-      <button><a href="https://mangabuddy.com/mbx14-villain-to-kill">Villain to kill</a></button><br>
-      <button><a href="https://mangabuddy.com/mbx14-solo-leveling">Solo Leveling</a></button><br>
-      <button><a href="https://mangabuddy.com/reincarnation-of-the-suicidal-battle-god">Reincarnation of Suicidal Battle God</a></button><br>
-      <button><a href="https://mangabuddy.com/return-of-the-disaster-class-hero ">Return of the Disaster Class Hero</a></button><br>
-      <button><a href="https://mangabuddy.com/existence">Existence</a></button><br>
-      <button><a href="https://rawkuma.com/manga/one-punch-man/">One Punch Man</a></button><br>
-      <button><a href="https://rawkuma.com/manga/gachiakuta/">Gachiakuta</a></button><br>
-      <button><a href="https://rawkuma.com/manga/wistorias-wand-and-sword/">Wistoria's Wand and Sword</a></button><br>
-      <button><a href="https://rawkuma.com/manga/blue-lock/">Blue Lock</a></button><br>
-      <button><a href="https://mangakakalot.com/manga/wl923659">Task Force for Paranormal Disaster Management</a></button><br>
-      <button><a href="https://mangakakalot.com/manga/kx926534">Ori of the Dragon Chain - Heart</a></button><br>
-      <p>Can you share me your favorite <br>(M/M/M) Manhwa/Manga/Manhua?</p>
-      
-      <input placeholder="use chat if this does not work"><button text="submit"><a href="https://web.facebook.com/jherson.bartolay">Chat</a></button><br>
-      <input placeholder="comment not yet available"><button type="submit">Post</button>
-
-   
-  
-    
-  
-
-</body>
- 
-</html>
+        else {
+            if (ctr == 1){
+                g(2, 3);p("WRONG PASSWORD! PLEASE TRY AGAIN");
+                g(2, 4);p("ATTEMP: %d", ctr);
+                ctr = ctr + 1;    
+                g(23, 2);p("                     ");
+                goto loop;
+            }
+            else if (ctr == 2){
+                g(2, 3);p("WRONG PASSWORD! THIS IS YOUR LAST CHANCE!");
+                g(2, 4);p("ATTEMP: %d", ctr);
+                ctr = ctr + 1;    
+                g(23, 2);p("                     ");
+                goto loop;
+            }
+            else {
+                clrscr();
+                g(2, 2);p("Exited");
+                exit(0);
+            }
+            
+        }  
+    }                
+}    
