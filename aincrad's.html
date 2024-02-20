@@ -84,15 +84,14 @@ int main() {
                     g(4, 5);p("ENTER WITHDRAW AMOUNT: ");
                     amount:
                     g(27, 5);s("%d", &withdraw);
-                        if (withdraw % 100 == 0){
-                            g(4, 6);p("CONFIRM AMOUNT? Y/N: ");
-                            g(4, 6);s("%c", ans);
-                            if (ans == 'Y' || ans == 'y'){
-                                if (current_bal > 500 && withdraw != current_bal && withdraw > 99){
+                        if (withdraw % 100 == 0){   
+                            if (current_bal > 500 && withdraw != current_bal && withdraw > 99){
                                 current_bal = current_bal - withdraw;
+                                g(4, 6);p("CONFIRM AMOUNT? Y/N: ");
+                                g(4, 6);s("%c", ans);
+                                if (ans == 'Y' || ans == 'y'){
                                     if (current_bal > 500){
                                         //amount_again:
-                                        g(2, 13);p("|                                              |");
                                         clrscr();
                                         g(2, 1);p("|==============================================|");
                                         g(2, 2);p("|                                              |");
@@ -135,61 +134,57 @@ int main() {
                                            g(2, 6);p("              ");
                                            goto scan;
                                         }
+                                    }
+                                    else {
+                                    g(2, 1);p("|==============================================|");
+                                    g(2, 2);p("|                                              |");
+                                    g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                                    g(2, 4);p("|                                              |");
+                                    g(2, 5);p("|                                              |");
+                                    g(2, 6);p("|                                              |");
+                                    g(2, 7);p("|                                              |");
+                                    g(2, 8);p("|                                              |");
+                                    g(2, 9);p("|                                              |");
+                                    g(2, 10);p("|                                              |");
+                                    g(2, 11);p("|==============================================|");
+                                    g(2, 12);p("|                                              |");
+                                    g(2, 13);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
+                                    g(19, 2);p("ABC BANK");
+                                    g(8, 5);p("CAN'T WITHDRAW THE REMAINING AMOUNT");
+                                    g(8, 6);p("THERE MUST BE AT LEAST 500 LEFT. ");
+                                    g(25, 4);p("              ");
+                                    current_bal = current_bal + withdraw;
+                                    g(4, 12);p("PLEASE PRESS [B] TO BACK TO MAIN MENU: ");
+                                    scan_again:
+                                    g(43, 12);s("%s", &ans);
+                                        if (ans == 'B' || ans == 'b'){
+                                            goto ask;
+                                        } else {
+                                            goto scan_again;
+                                        }
+                                    }
+                                } else if (ans == 'N' || ans == 'n'){
+                                    g(27, 5);p("               ");
+                                    goto amount;
+                                } else {
+                                    g(4, 12);p("INVALID AMOUNT");
+                                    goto amount;
                                 }
-                                else {
-                                   g(2, 1);p("|==============================================|");
-                                   g(2, 2);p("|                                              |");
-                                   g(2, 3);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
-                                   g(2, 4);p("|                                              |");
-                                   g(2, 5);p("|                                              |");
-                                   g(2, 6);p("|                                              |");
-                                   g(2, 7);p("|                                              |");
-                                   g(2, 8);p("|                                              |");
-                                   g(2, 9);p("|                                              |");
-                                   g(2, 10);p("|                                              |");
-                                   g(2, 11);p("|==============================================|");
-                                   g(2, 12);p("|                                              |");
-                                   g(2, 13);p("|××××××××××××××××××××××××××××××××××××××××××××××|");
-                                   g(19, 2);p("ABC BANK");
-                                   g(8, 5);p("CAN'T WITHDRAW THE REMAINING AMOUNT");
-                                   g(8, 6);p("THERE MUST BE AT LEAST 500 LEFT. ");
-                                   g(25, 4);p("              ");
-                                   current_bal = current_bal + withdraw;
-                                   g(4, 12);p("PLEASE PRESS [B] TO BACK TO MAIN MENU: ");
-                                   scan_again:
-                                   g(43, 12);s("%s", &ans);
-                                      if (ans == 'B' || ans == 'b'){
-                                          goto ask;
-                                      } else {
-                                          goto scan_again;
-                                   }
-                                }
-                                
+                            } else if (withdraw == current_bal){
+                                g(4, 12);p("INVALID AMOUNT");
+                                g(27, 4);p("                 ");
+                                goto amount;
                             }
-                        else if (withdraw == current_bal){
+                            else {
+                                g(4, 12);p("NO AMOUNT HAS BEEN ENTERED");
+                                g(27, 4);p("                 ");
+                                goto amount;
+                            } 
+                        } else {
                             g(4, 12);p("INVALID AMOUNT");
-                            g(27, 4);p("                 ");
-                            goto amount;
-                        }
-                        else {
-                            g(4, 12);p("NO AMOUNT HAS BEEN ENTERED");
-                            g(27, 4);p("                 ");
-                            goto amount;
-                            }
-                    } 
-                else if (ans == 'N' || ans == 'n'){
-                            g(27, 5);p("               ");
-                            goto amount;
-                            }
-                        }
-                        else {
-                             g(4, 12);p("INVALID AMOUNT");
                             g(27, 5);p("                 ");
                             goto amount;
-                            }
-                              
-                            
-                        
+                        }       
                 if (choice == 3){
                     clrscr();
                     g(2, 1);p("|==============================================|");
